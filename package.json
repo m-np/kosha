@@ -1,0 +1,104 @@
+{
+  "name": "kosha",
+  "version": "1.0.0",
+  "description": "Self-hosted second brain — plain markdown files, local first",
+  "homepage": "https://github.com/m-np/kosha#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/m-np/kosha.git"
+  },
+  "bugs": {
+    "url": "https://github.com/m-np/kosha/issues"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Mandar",
+    "email": "mandar4tech@gmail.com"
+  },
+  "main": "electron/main.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "electron .",
+    "dist": "electron-builder --linux",
+    "dist:mac": "electron-builder --mac",
+    "dist:win": "electron-builder --win"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "electron": "^31.7.7",
+    "electron-builder": "^24.13.3"
+  },
+  "build": {
+    "appId": "com.kosha.secondbrain",
+    "productName": "Kosha",
+    "copyright": "Copyright © 2026",
+    "files": [
+      "electron/**/*",
+      "server.js",
+      "node_modules/**/*",
+      "!node_modules/electron/**",
+      "!node_modules/electron-builder/**",
+      "!node_modules/.cache/**"
+    ],
+    "extraResources": [
+      {
+        "from": "public",
+        "to": "public"
+      },
+      {
+        "from": "templates",
+        "to": "templates"
+      },
+      {
+        "from": "notes",
+        "to": "default-notes"
+      }
+    ],
+    "linux": {
+      "target": [
+        {
+          "target": "AppImage",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "deb",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "category": "Office",
+      "synopsis": "Self-hosted second brain"
+    },
+    "mac": {
+      "target": [
+        {
+          "target": "dmg",
+          "arch": [
+            "x64",
+            "arm64"
+          ]
+        }
+      ],
+      "category": "public.app-category.productivity"
+    },
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
+  }
+}
